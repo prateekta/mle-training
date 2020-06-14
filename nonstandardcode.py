@@ -1,8 +1,6 @@
 import os
 import tarfile
 
-import matplotlib as mpl
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy.stats import randint
@@ -38,10 +36,14 @@ def load_housing_data(housing_path=HOUSING_PATH):
     return pd.read_csv(csv_path)
 
 
-housing = load_housing_data
+def income_cat_proportions(data):
+    return data["income_cat"].value_counts() / len(data)
 
 
-train_set, test_set = train_test_split(housing, test_size=0.2, random_state=42)
+fetch_housing_data()
+
+housing = load_housing_data()
+
 
 housing["income_cat"] = pd.cut(
     housing["median_income"],
@@ -49,18 +51,14 @@ housing["income_cat"] = pd.cut(
     labels=[1, 2, 3, 4, 5],
 )
 
+train_set, test_set = train_test_split(housing, test_size=0.2, random_state=42)
+
 
 split = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
 for train_index, test_index in split.split(housing, housing["income_cat"]):
     strat_train_set = housing.loc[train_index]
     strat_test_set = housing.loc[test_index]
 
-
-def income_cat_proportions(data):
-    return data["income_cat"].value_counts() / len(data)
-
-
-train_set, test_set = train_test_split(housing, test_size=0.2, random_state=42)
 
 compare_props = pd.DataFrame(
     {
@@ -98,7 +96,6 @@ housing = strat_train_set.drop(
 )  # drop labels for training set
 housing_labels = strat_train_set["median_house_value"].copy()
 
-
 imputer = SimpleImputer(strategy="median")
 
 housing_num = housing.drop("ocean_proximity", axis=1)
@@ -126,15 +123,12 @@ housing_prepared = housing_tr.join(
 lin_reg = LinearRegression()
 lin_reg.fit(housing_prepared, housing_labels)
 
-
 housing_predictions = lin_reg.predict(housing_prepared)
 lin_mse = mean_squared_error(housing_labels, housing_predictions)
 lin_rmse = np.sqrt(lin_mse)
-lin_rmse
 
 
 lin_mae = mean_absolute_error(housing_labels, housing_predictions)
-lin_mae
 
 
 tree_reg = DecisionTreeRegressor(random_state=42)
@@ -143,8 +137,6 @@ tree_reg.fit(housing_prepared, housing_labels)
 housing_predictions = tree_reg.predict(housing_prepared)
 tree_mse = mean_squared_error(housing_labels, housing_predictions)
 tree_rmse = np.sqrt(tree_mse)
-tree_rmse
-
 
 param_distribs = {
     "n_estimators": randint(low=1, high=200),
