@@ -1,0 +1,5 @@
+'2020-06-21 22:31:16,626 utils        INFO     Test RMSE score linear regression: 66911.98070857566'
+'2020-06-21 22:31:16,677 utils        INFO     Test RMSE score Grid search: 48244.85220207772'
+'2020-06-21 22:34:35,651 utils        INFO     Test RMSE score linear regression: 66911.98070857566'
+'2020-06-21 22:34:35,654 utils        INFO     Test RMSE score decision trees: 70969.76802138504'
+'2020-06-21 22:34:35,685 utils        INFO     Test RMSE score Grid search: 48244.85220207772'

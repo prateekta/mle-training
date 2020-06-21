@@ -1,0 +1,59 @@
+'2020-06-21 22:07:52,419 __main__     INFO     linear regression rmse: 68628.19819848922'
+'2020-06-21 22:07:52,420 __main__     INFO     linear regression mae: 49439.895990018755'
+'2020-06-21 22:07:52,727 __main__     INFO     Decision trees rmse: 0.0'
+'2020-06-21 22:10:35,912 __main__     INFO     random forest with random search gave score 
+ 49155.170365634505 for parameters {'max_features': 7, 'n_estimators': 180}'
+'2020-06-21 22:10:35,913 __main__     INFO     random forest with random search gave score 
+ 50987.04312458704 for parameters {'max_features': 5, 'n_estimators': 15}'
+'2020-06-21 22:10:35,913 __main__     INFO     random forest with random search gave score 
+ 50615.062741858346 for parameters {'max_features': 3, 'n_estimators': 72}'
+'2020-06-21 22:10:35,914 __main__     INFO     random forest with random search gave score 
+ 50384.45258861629 for parameters {'max_features': 5, 'n_estimators': 21}'
+'2020-06-21 22:10:35,914 __main__     INFO     random forest with random search gave score 
+ 49311.12724384495 for parameters {'max_features': 7, 'n_estimators': 122}'
+'2020-06-21 22:10:35,914 __main__     INFO     random forest with random search gave score 
+ 50620.02725664336 for parameters {'max_features': 3, 'n_estimators': 75}'
+'2020-06-21 22:10:35,914 __main__     INFO     random forest with random search gave score 
+ 50544.81214288387 for parameters {'max_features': 3, 'n_estimators': 88}'
+'2020-06-21 22:10:35,914 __main__     INFO     random forest with random search gave score 
+ 49425.39483845691 for parameters {'max_features': 5, 'n_estimators': 100}'
+'2020-06-21 22:10:35,914 __main__     INFO     random forest with random search gave score 
+ 50424.43333681439 for parameters {'max_features': 3, 'n_estimators': 150}'
+'2020-06-21 22:10:35,914 __main__     INFO     random forest with random search gave score 
+ 64513.81455303026 for parameters {'max_features': 5, 'n_estimators': 2}'
+'2020-06-21 22:11:21,036 __main__     INFO     random forest with grid search gave score 
+ 64756.15287120735 for parameters {'max_features': 2, 'n_estimators': 3}'
+'2020-06-21 22:11:21,036 __main__     INFO     random forest with grid search gave score 
+ 56063.4893319337 for parameters {'max_features': 2, 'n_estimators': 10}'
+'2020-06-21 22:11:21,036 __main__     INFO     random forest with grid search gave score 
+ 53273.90806143431 for parameters {'max_features': 2, 'n_estimators': 30}'
+'2020-06-21 22:11:21,036 __main__     INFO     random forest with grid search gave score 
+ 59101.28067228025 for parameters {'max_features': 4, 'n_estimators': 3}'
+'2020-06-21 22:11:21,036 __main__     INFO     random forest with grid search gave score 
+ 52474.6964949602 for parameters {'max_features': 4, 'n_estimators': 10}'
+'2020-06-21 22:11:21,036 __main__     INFO     random forest with grid search gave score 
+ 50255.25226845538 for parameters {'max_features': 4, 'n_estimators': 30}'
+'2020-06-21 22:11:21,036 __main__     INFO     random forest with grid search gave score 
+ 58478.93093971638 for parameters {'max_features': 6, 'n_estimators': 3}'
+'2020-06-21 22:11:21,037 __main__     INFO     random forest with grid search gave score 
+ 51882.75302588659 for parameters {'max_features': 6, 'n_estimators': 10}'
+'2020-06-21 22:11:21,037 __main__     INFO     random forest with grid search gave score 
+ 49868.92531447902 for parameters {'max_features': 6, 'n_estimators': 30}'
+'2020-06-21 22:11:21,037 __main__     INFO     random forest with grid search gave score 
+ 57806.27616477774 for parameters {'max_features': 8, 'n_estimators': 3}'
+'2020-06-21 22:11:21,037 __main__     INFO     random forest with grid search gave score 
+ 51835.9458092803 for parameters {'max_features': 8, 'n_estimators': 10}'
+'2020-06-21 22:11:21,037 __main__     INFO     random forest with grid search gave score 
+ 50203.329994664484 for parameters {'max_features': 8, 'n_estimators': 30}'
+'2020-06-21 22:11:21,037 __main__     INFO     random forest with grid search gave score 
+ 64112.198842075566 for parameters {'bootstrap': False, 'max_features': 2, 'n_estimators': 3}'
+'2020-06-21 22:11:21,037 __main__     INFO     random forest with grid search gave score 
+ 54651.51712479169 for parameters {'bootstrap': False, 'max_features': 2, 'n_estimators': 10}'
+'2020-06-21 22:11:21,037 __main__     INFO     random forest with grid search gave score 
+ 61288.864185527455 for parameters {'bootstrap': False, 'max_features': 3, 'n_estimators': 3}'
+'2020-06-21 22:11:21,037 __main__     INFO     random forest with grid search gave score 
+ 53224.19707673298 for parameters {'bootstrap': False, 'max_features': 3, 'n_estimators': 10}'
+'2020-06-21 22:11:21,037 __main__     INFO     random forest with grid search gave score 
+ 57838.22236630826 for parameters {'bootstrap': False, 'max_features': 4, 'n_estimators': 3}'
+'2020-06-21 22:11:21,037 __main__     INFO     random forest with grid search gave score 
+ 51377.79059097661 for parameters {'bootstrap': False, 'max_features': 4, 'n_estimators': 10}'
