@@ -18,6 +18,8 @@ LOGGING_PATH = os.path.join(path.parent.parent, "housing_modeling/logs")
 
 
 def fetch_housing_data(housing_url=HOUSING_URL, housing_path=HOUSING_PATH):
+    if os.path.isfile(HOUSING_PATH + '/housing.tgz'):
+        return
     os.makedirs(housing_path, exist_ok=True)
     tgz_path = os.path.join(housing_path, "housing.tgz")
     urllib.request.urlretrieve(housing_url, tgz_path)
