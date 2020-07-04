@@ -7,7 +7,7 @@ import pandas as pd
 from six.moves import urllib
 from sklearn.model_selection import StratifiedShuffleSplit, train_test_split
 
-from utils import create_logger
+from .utils import create_logger
 
 path = Path(os.getcwd())
 
@@ -18,7 +18,14 @@ LOGGING_PATH = os.path.join(path.parent.parent, "housing_modeling/logs")
 
 
 def fetch_housing_data(housing_url=HOUSING_URL, housing_path=HOUSING_PATH):
-    if os.path.isfile(HOUSING_PATH + '/housing.tgz'):
+    """
+    fetches the data from the given url and extracts its contents
+
+    Parameters:
+    housing_url (str): url of the dataset
+    housing_path (str): location to store the data
+    """
+    if os.path.isfile(HOUSING_PATH + "/housing.tgz"):
         return
     os.makedirs(housing_path, exist_ok=True)
     tgz_path = os.path.join(housing_path, "housing.tgz")
@@ -29,11 +36,33 @@ def fetch_housing_data(housing_url=HOUSING_URL, housing_path=HOUSING_PATH):
 
 
 def load_housing_data(housing_path=HOUSING_PATH):
-    csv_path = os.path.join(housing_path, "housing.csv")
+    """
+    loads the data from the given path and returns the dataframe
+
+    Parameters:
+    housing_path (str): location to store the data
+
+    Returns:
+    pd.DataFrame: housing data
+    """
+    try:
+        csv_path = os.path.join(housing_path, "housing.csv")
+    except FileNotFoundError:
+        raise "file does not exist"
+
     return pd.read_csv(csv_path)
 
 
 def income_cat_proportions(data):
+    """
+    returns the value counts of income categories
+
+    Parameters:
+    data (pd.DataFrame): the dataset
+    
+    Returns:
+    pd.DataFrame
+    """
     return data["income_cat"].value_counts() / len(data)
 
 

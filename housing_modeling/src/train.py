@@ -22,6 +22,14 @@ MODEL_PATH = os.path.join(path.parent.parent, "datasets/modeling")
 
 
 def train_linear_regression(X, y):
+    """
+    Trains a linear regression model on the inputs and saves the model 
+    as a pickle file
+
+    Parameters:
+    X (pd.DataFrame): training data
+    y (pd.Series):  value to be predicted
+    """
     lin_reg = LinearRegression()
     lin_reg.fit(X, y)
 
@@ -35,6 +43,13 @@ def train_linear_regression(X, y):
 
 
 def train_decision_trees(X, y):
+    """
+    Trains a decision tree on the inputs and saves the model as a pickle file
+
+    Parameters:
+    X (pd.DataFrame): training data
+    y (pd.Series):  value to be predicted
+    """
     tree_reg = DecisionTreeRegressor(random_state=42)
     tree_reg.fit(X, y)
 
@@ -46,6 +61,14 @@ def train_decision_trees(X, y):
 
 
 def train_RFR_random_search(X, y):
+    """
+    Trains a random forest model on the inputs using random search and saves
+    the model as a pickle file
+
+    Parameters:
+    X (pd.DataFrame): training data
+    y (pd.Series):  value to be predicted
+    """
     param_distribs = {
         "n_estimators": randint(low=1, high=200),
         "max_features": randint(low=1, high=8),
@@ -72,6 +95,14 @@ def train_RFR_random_search(X, y):
 
 
 def train_RFR_grid_search(X, y):
+    """
+    Trains a random forest model on the inputs using grid search and saves
+    the model as a pickle file
+
+    Parameters:
+    X (pd.DataFrame): training data
+    y (pd.Series):  value to be predicted
+    """
     param_grid = [
         # try 12 (3×4) combinations of hyperparameters
         {"n_estimators": [3, 10, 30], "max_features": [2, 4, 6, 8]},

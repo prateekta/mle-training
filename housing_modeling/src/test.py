@@ -16,6 +16,13 @@ MODEL_PATH = os.path.join(path.parent.parent, "datasets/modeling")
 
 
 def get_test_score(name, X, y):
+    """
+    logs the test score for a given model name and test dataset
+
+    Parameters:
+    X (pd.DataFrame): testing data
+    y (pd.Series):  value to be predicted
+    """
     model_path = os.path.join(MODEL_PATH, name + ".pkl")
     model = joblib.load(model_path)
     final_predictions = model.predict(X)
