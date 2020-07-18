@@ -1,20 +1,15 @@
 import os
 import tarfile
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from six.moves import urllib
 from sklearn.model_selection import StratifiedShuffleSplit, train_test_split
 
-from .utils import create_logger
-
-path = Path(os.getcwd())
+from .utils import HOUSING_PATH, LOGGING_PATH, create_logger
 
 DOWNLOAD_ROOT = "https://raw.githubusercontent.com/ageron/handson-ml/master/"
-HOUSING_PATH = os.path.join(path.parent.parent, "datasets/housing")
 HOUSING_URL = DOWNLOAD_ROOT + "datasets/housing/housing.tgz"
-LOGGING_PATH = os.path.join(path.parent.parent, "housing_modeling/logs")
 
 
 def fetch_housing_data(housing_url=HOUSING_URL, housing_path=HOUSING_PATH):
@@ -25,7 +20,7 @@ def fetch_housing_data(housing_url=HOUSING_URL, housing_path=HOUSING_PATH):
     housing_url (str): url of the dataset
     housing_path (str): location to store the data
     """
-    if os.path.isfile(HOUSING_PATH + "/housing.tgz"):
+    if os.path.isfile(housing_path + "/housing.tgz"):
         return
     os.makedirs(housing_path, exist_ok=True)
     tgz_path = os.path.join(housing_path, "housing.tgz")
@@ -45,10 +40,7 @@ def load_housing_data(housing_path=HOUSING_PATH):
     Returns:
     pd.DataFrame: housing data
     """
-    try:
-        csv_path = os.path.join(housing_path, "housing.csv")
-    except FileNotFoundError:
-        raise "file does not exist"
+    csv_path = os.path.join(housing_path, "housing.csv")
 
     return pd.read_csv(csv_path)
 

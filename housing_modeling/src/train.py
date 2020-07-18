@@ -1,29 +1,20 @@
 import os
-from pathlib import Path
 
 import joblib
 import numpy as np
-import pandas as pd
 from scipy.stats import randint
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 from sklearn.tree import DecisionTreeRegressor
 
-from utils import create_logger
-
-path = Path(os.getcwd())
-
-LOGGING_PATH = os.path.join(path.parent.parent, "housing_modeling/logs")
-HOUSING_PATH = os.path.join(path.parent.parent, "datasets/housing")
-MODEL_PATH = os.path.join(path.parent.parent, "datasets/modeling")
+from utils import LOGGING_PATH, MODEL_PATH, create_logger, process_data
 
 
 def train_linear_regression(X, y):
     """
-    Trains a linear regression model on the inputs and saves the model 
+    Trains a linear regression model on the inputs and saves the model
     as a pickle file
 
     Parameters:
@@ -143,55 +134,10 @@ def train_RFR_grid_search(X, y):
 
 
 if __name__ == "__main__":
-    strat_train_set = pd.read_parquet(
-        os.path.join(HOUSING_PATH, "train.parquet")
-    )
 
-    housing = strat_train_set.copy()
+    housing_prepared, housing_labels = process_data(is_train=True)
+
     logger = create_logger(LOGGING_PATH, "train.log")
-    corr_matrix = housing.corr()
-    corr_matrix["median_house_value"].sort_values(ascending=False)
-    housing["rooms_per_household"] = (
-        housing["total_rooms"] / housing["households"]
-    )
-    housing["bedrooms_per_room"] = (
-        housing["total_bedrooms"] / housing["total_rooms"]
-    )
-    housing["population_per_household"] = (
-        housing["population"] / housing["households"]
-    )
-
-    housing = strat_train_set.drop(
-        "median_house_value", axis=1
-    )  # drop labels for training set
-    housing_labels = strat_train_set["median_house_value"].copy()
-
-    imputer = SimpleImputer(strategy="median")
-
-    housing_num = housing.drop("ocean_proximity", axis=1)
-
-    imputer.fit(housing_num)
-    joblib.dump(imputer, os.path.join(MODEL_PATH, "imputer.pkl"))
-
-    X = imputer.transform(housing_num)
-
-    housing_tr = pd.DataFrame(
-        X, columns=housing_num.columns, index=housing.index
-    )
-    housing_tr["rooms_per_household"] = (
-        housing_tr["total_rooms"] / housing_tr["households"]
-    )
-    housing_tr["bedrooms_per_room"] = (
-        housing_tr["total_bedrooms"] / housing_tr["total_rooms"]
-    )
-    housing_tr["population_per_household"] = (
-        housing_tr["population"] / housing_tr["households"]
-    )
-
-    housing_cat = housing[["ocean_proximity"]]
-    housing_prepared = housing_tr.join(
-        pd.get_dummies(housing_cat, drop_first=True)
-    )
 
     os.makedirs(MODEL_PATH, exist_ok=True)
 

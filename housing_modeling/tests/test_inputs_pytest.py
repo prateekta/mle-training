@@ -7,12 +7,6 @@ from housing_modeling.src.create_dataset import (
 )
 
 
-def test_load_raises():
-    with pytest.raises(FileNotFoundError) as excinfo:
-        obj = load_housing_data("/home/")  # noqa
-        assert "file does not exist" in str(excinfo.value)
-
-
 def test_income_proportion():  # (data, expected):
     data = pd.DataFrame({"income_cat": ["a", "a", "b", "a", "c", "c", "a"]})
     expected = pd.Series(

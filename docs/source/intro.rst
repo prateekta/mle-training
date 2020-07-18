@@ -63,7 +63,7 @@ Installation
 ------------
 Ideally, one should create a separate virtual environment (using anaconda), and the dependencies can be installed using::
 
-    >>conda install env.yml
+    >>conda env create -f env.yml -n <env_name>
 
 housing_prediction can be converted to a python package using::
 
