@@ -1,18 +1,14 @@
 import base64
 
 from flask import (
-    Flask,
     abort,
     flash,
     jsonify,
     make_response,
-    redirect,
     render_template,
     request,
-    session,
-    url_for
 )
-from flask_login import LoginManager, UserMixin, login_required, login_user
+from flask_login import LoginManager, UserMixin, login_required
 from flask_wtf import Form
 from itsdangerous import JSONWebSignatureSerializer
 from wtforms.fields import DecimalField, StringField, SubmitField
@@ -53,7 +49,7 @@ def load_user(request):
             token = base64.b64decode(token).decode("utf-8")
         except TypeError:
             pass
-        #print("the token is : ", token, app.secret_key)
+        # print("the token is : ", token, app.secret_key)
         s = JSONWebSignatureSerializer(app.secret_key)
         # token = s.loads(token)
         username, password = token.split(":")  # naive token
@@ -188,7 +184,7 @@ if __name__ == "__main__":
     app.run()
 
 
-# s = JSONWebSignatureSerializer('app.secret_key')
+# s = JSONWebSignatureSerializer(app.secret_key)
 # s.dumps('prateek')
 # s.dumps('flask')
 # curl -u 'eyJhbGciOiJIUzUxMiJ9.InByYXRlZWsi.6pTTZjSXEyyqq_RMPaM53H9B-GMaT7sBZyPucNm-agpuSh4YY6573lUGwMTsTiGHsyuqN9MOKS9F6xWFK_kDYg':'eyJhbGciOiJIUzUxMiJ9.ImZsYXNrIg._s8ubXhQqH_s3RfO4CrPL5keU_s04k-1ZefmdIxtSS3m_aJsY9asSNpZDISjp_hVpvJLEnkislqe42enl8qtnQ' -i -H "Content-Type: application/json" -X POST -d '{"longitude":2, "latitude":2, "housing_median_age":1000, "total_rooms":2, "total_bedrooms":3, "population":5, "households":4, "median_income":10000, "ocean_proximity":"NEAR BAY"}' http://localhost:5000/predict

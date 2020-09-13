@@ -10,7 +10,8 @@ Version |release|
 
 Welcome to housing_prediction's documentation. If you're new here, I recommend you
 start with the :ref:`introduction <intro>`. Then, take a look at the
-:ref:`usage tutorial <tutorial>`.
+:ref:`usage tutorial <tutorial>`. Once you've run the model, you can run a flask application on it, 
+as detailed :ref:`here <flask>`
 
 Contents
 --------
@@ -21,6 +22,7 @@ Contents
 
     intro
     tutorial
+    flask
 
 
 
