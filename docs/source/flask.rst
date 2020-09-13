@@ -1,8 +1,9 @@
-.. _flask:
 .. _http://127.0.0.1:5000/: http://www.python.org/
 .. |br| raw:: html
 
    <br />
+
+.. _flask:
 
 Flask Application
 ============
