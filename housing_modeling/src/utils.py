@@ -65,3 +65,44 @@ def process_data(is_train):
     )
 
     return housing_prepared, housing_labels
+
+
+def predict(data):
+    housing_num = data.drop("ocean_proximity", axis=1)
+
+    imputer = joblib.load(os.path.join(MODEL_PATH, "imputer.pkl"))
+
+    X = imputer.transform(housing_num)
+
+    housing_new = pd.DataFrame(
+        X, columns=housing_num.columns, index=data.index
+    )
+    housing_new["rooms_per_household"] = (
+        housing_new["total_rooms"] / housing_new["households"]
+    )
+    housing_new["bedrooms_per_room"] = (
+        housing_new["total_bedrooms"] / housing_new["total_rooms"]
+    )
+    housing_new["population_per_household"] = (
+        housing_new["population"] / housing_new["households"]
+    )
+
+    housing_new["ocean_proximity_INLAND"] = int(
+        data[["ocean_proximity"]].values[0][0] == "INLAND"
+    )
+    housing_new["ocean_proximity_NEAR BAY"] = int(
+        data[["ocean_proximity"]].values[0][0] == "NEAR BAY"
+    )
+    housing_new["ocean_proximity_ISLAND"] = int(
+        data[["ocean_proximity"]].values[0][0] == "ISLAND"
+    )
+    housing_new["ocean_proximity_NEAR OCEAN"] = int(
+        data[["ocean_proximity"]].values[0][0] == "NEAR OCEAN"
+    )
+
+    model = joblib.load(
+        os.path.join(MODEL_PATH, "random_forest_grid_search.pkl")
+    )
+
+    final_predictions = model.predict(housing_new)
+    return final_predictions[0]
