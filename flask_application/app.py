@@ -15,7 +15,7 @@ from wtforms.fields import DecimalField, StringField, SubmitField
 from wtforms.validators import Required, ValidationError
 
 from flask_application import app
-from predict import make_prediction
+from predict import make_dictionary, make_prediction
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -159,7 +159,8 @@ def home():
     # form = YesNoQuestionForm()
     if form.validate_on_submit():
         flash("making prediction for the data given...")
-        output = make_prediction({}, form)
+        dictionary = make_dictionary(form)
+        output = make_prediction(dictionary)
         text = "Predicted price is {}".format(output)
         return render_template("home.html", form=form, prediction_text=text)
     return render_template("home.html", form=form)
