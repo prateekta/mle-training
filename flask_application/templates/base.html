@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <title>Welcome to Housing predictions</title>
+</head>
+
+<body>
+    <p>Click <a href="{{ url_for('home') }}">here</a> to make a new prediction.</p>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Housing Prediction</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.longitude.label }} {{ form.longitude() }}
+        {% for error in form.longitude.errors %}[{{ error }}]{% endfor %}
+    </p>
+    <p>
+        {{ form.latitude.label }} {{ form.latitude() }}
+        {% for error in form.latitude.errors %}[{{ error }}]{% endfor %}
+    </p>
+    <p>
+        {{ form.population.label }} {{ form.population() }}
+        {% for error in form.population.errors %}[{{ error }}]{% endfor %}
+    </p>
+    <p>
+        {{ form.housing_median_age.label }} {{ form.housing_median_age() }}
+        {% for error in form.housing_median_age.errors %}[{{ error }}]{% endfor %}
+    </p>
+    <p>
+        {{ form.total_rooms.label }} {{ form.total_rooms() }}
+        {% for error in form.total_rooms.errors %}[{{ error }}]{% endfor %}
+    </p>
+    <p>
+        {{ form.total_bedrooms.label }} {{ form.total_bedrooms() }}
+        {% for error in form.total_bedrooms.errors %}[{{ error }}]{% endfor %}
+    </p>
+    <p>
+        {{ form.households.label }} {{ form.households() }}
+        {% for error in form.households.errors %}[{{ error }}]{% endfor %}
+    </p>
+    <p>
+        {{ form.median_income.label }} {{ form.median_income() }}
+        {% for error in form.median_income.errors %}[{{ error }}]{% endfor %}
+    </p>
+    <p>
+        {{ form.ocean_proximity.label }} {{ form.ocean_proximity() }}
+        {% for error in form.ocean_proximity.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    {{ form.submit }}
+</form>
+<br>
+<br>
+{{ prediction_text }}
+{% endblock %}
