@@ -6,7 +6,7 @@ import pandas as pd
 from six.moves import urllib
 from sklearn.model_selection import StratifiedShuffleSplit, train_test_split
 
-from .utils import HOUSING_PATH, LOGGING_PATH, create_logger
+from utils import HOUSING_PATH, LOGGING_PATH, create_logger
 
 DOWNLOAD_ROOT = "https://raw.githubusercontent.com/ageron/handson-ml/master/"
 HOUSING_URL = DOWNLOAD_ROOT + "datasets/housing/housing.tgz"
