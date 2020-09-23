@@ -12,7 +12,7 @@ from sklearn.tree import DecisionTreeRegressor
 from utils import LOGGING_PATH, MODEL_PATH, create_logger, process_data
 
 
-def train_linear_regression(X, y):
+def train_linear_regression(X, y, logger):
     """
     Trains a linear regression model on the inputs and saves the model
     as a pickle file
@@ -33,7 +33,7 @@ def train_linear_regression(X, y):
     joblib.dump(lin_reg, os.path.join(MODEL_PATH, "linear_regression.pkl"))
 
 
-def train_decision_trees(X, y):
+def train_decision_trees(X, y, logger):
     """
     Trains a decision tree on the inputs and saves the model as a pickle file
 
@@ -51,7 +51,7 @@ def train_decision_trees(X, y):
     joblib.dump(tree_reg, os.path.join(MODEL_PATH, "decision_tree.pkl"))
 
 
-def train_RFR_random_search(X, y):
+def train_RFR_random_search(X, y, logger):
     """
     Trains a random forest model on the inputs using random search and saves
     the model as a pickle file
@@ -85,7 +85,7 @@ def train_RFR_random_search(X, y):
     )
 
 
-def train_RFR_grid_search(X, y):
+def train_RFR_grid_search(X, y, logger):
     """
     Trains a random forest model on the inputs using grid search and saves
     the model as a pickle file
