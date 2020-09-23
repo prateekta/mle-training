@@ -40,6 +40,7 @@ def process_data(is_train):
     if is_train:
         imputer = SimpleImputer(strategy="median")
         imputer.fit(housing_num)
+        os.makedirs(MODEL_PATH, exist_ok=True)
         joblib.dump(imputer, os.path.join(MODEL_PATH, "imputer.pkl"))
     else:
         imputer = joblib.load(os.path.join(MODEL_PATH, "imputer.pkl"))
