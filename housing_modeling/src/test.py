@@ -29,5 +29,5 @@ if __name__ == "__main__":
     X_test_prepared, y_test = process_data(is_train=False)
 
     get_test_score("linear_regression", X_test_prepared, y_test, logger)
-    get_test_score("decision_tree", X_test_prepared, y_test)
-    get_test_score("random_forest_grid_search", X_test_prepared, y_test)
+    get_test_score("decision_tree", X_test_prepared, y_test, logger)
+    get_test_score("random_forest_grid_search", X_test_prepared, y_test, logger)
